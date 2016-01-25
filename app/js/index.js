@@ -1,6 +1,9 @@
 import 'babel-polyfill';
 import angular from 'angular';
 import angularUiRouter from 'angular-ui-router';
+import angularAnimate from 'angular-animate';
+
+
 
 import MainController from './main/index';
 import StartController from './start/index';
@@ -10,7 +13,7 @@ import GameService from './games/index';
 import mainTemplate from './../partials/main/index.html';
 import startTemplate from './../partials/start/index.html';
 
-angular.module('app', [angularUiRouter])
+angular.module('app', [angularUiRouter, "ui.bootstrap", angularAnimate])
     .controller('MainController', MainController)
     .controller('StartController', StartController)
     .service('GameService', GameService)
@@ -19,7 +22,6 @@ angular.module('app', [angularUiRouter])
             return obj.reduce();
         }
     })
-
     .config(function($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/');
 

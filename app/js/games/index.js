@@ -1,15 +1,28 @@
 class GameService {
     constructor() {
-        this.saved = localStorage.getItem('tennisGameStats');
-        this.games = (localStorage.getItem('tennisGameStats') !== null) ? angular.fromJson(this.saved) : [{
+        this.saved =localStorage.getItem('tennisGameStats');
+        this.games = (localStorage.getItem('tennisGameStats') !== null) ?  angular.fromJson(this.saved) : [{
             opponentName: 'computer',
-            playerScore: 21,
-            opponentScore: 11
+            playerScore: 0,
+            opponentScore: 21,
+            time: new Date()
         }];
+        this.timeToObjDate();
         localStorage.setItem('tennisGameStats', angular.toJson(this.games));
     }
 
-    addGame(opponentName, playerScore, opponentScore) {
+
+    timeToObjDate() {
+
+        for(var id =0; id <  this.games.length; id++) {
+            this.games[id].time = new Date(this.games[id].time);
+        }
+
+        localStorage.setItem('tennisGameStats', angular.toJson(this.games));
+
+    }
+
+    addGame(opponentName, playerScore, opponentScore, time) {
         this.games.push({
             opponentName, playerScore, opponentScore, time: new Date()
         });
@@ -44,6 +57,7 @@ class GameService {
 
         return 100 - this.getWinPercent();
     }
+
 
 }
 
