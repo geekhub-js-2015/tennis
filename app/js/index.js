@@ -14,6 +14,23 @@ angular.module('app', [angularUiRouter])
     .controller('MainController', MainController)
     .controller('StartController', StartController)
     .service('GameService', GameService)
+    .filter('groupByName', function() {
+        return function(obj) {
+            return obj.reduce();
+        };
+    })
+	/*.directive('autoComplete', function($timeout) {
+		return function(scope, iElement, iAttrs) {
+			iElement.autocomplete({
+				source: scope[iAttrs.uiItems],
+				select: function() {
+					$timeout(function() {
+						iElement.trigger('input');
+					}, 0);
+				}
+			});
+		};
+	})*/
     .config(function($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/');
 

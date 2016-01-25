@@ -26,7 +26,7 @@ gulp.task('default', ['build']);
 gulp.task('build', ['scripts', 'scripts:hint', 'html', 'styles']);
 
 gulp.task('styles', () => {
-    return gulp.src('app/styles/*.less')
+    return gulp.src(['app/styles/*.less', 'app/styles/*.css'])
         .pipe(sourcemaps.init())
         .pipe(less())
         .pipe(cssnano())
