@@ -30,18 +30,21 @@ class GameService {
 
     getWinPercent() {
 
-        let lastMonthGames = this.games.filter(function (game, i, array) {
-            let gameTime = this.moment();
-            let startDayPrevMonth = gameTime.subtract(1, 'month');
-            return gameTime >= startDayPrevMonth;
+        let lastMonthGames = this.games.filter(function (game) {
+            let gameTime = this.moment(game.time);
+            let startDayPrevMonth = this.moment().subtract(1, 'month');
+
+            return gameTime.isAfter(startDayPrevMonth);
         }, this);
 
         let countGames = lastMonthGames.length;
 
         let winAmount = lastMonthGames.reduce(function (sum, game) {
             if (game.playerScore > game.opponentScore) {
-                return sum+1;
+
+                return sum + 1;
             }
+
             return sum;
         }, 0);
 
@@ -64,7 +67,8 @@ class GameService {
     load() {
         try {
             this.games = JSON.parse(localStorage.games);
-        } catch(e) {}
+        } catch (e) {
+        }
 
         if (!this.games) {
             this.clear();
