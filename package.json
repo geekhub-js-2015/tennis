@@ -7,7 +7,7 @@
     "test": "gulp test"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "angular": "^1.4.8",
     "angular-ui-router": "^1.0.0-alpha0",
