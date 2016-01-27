@@ -57,7 +57,7 @@ gulp.task('scripts', () => {
 });
 
 gulp.task('scripts:hint', () => {
-    return gulp.src('app/js/**/*.js')
+    return gulp.src(['app/js/**/*.js', 'tests/**/*.js'])
         .pipe(jshint({esnext: true}))
         .pipe(jshint.reporter(jshintStylish));
 });
@@ -87,7 +87,7 @@ gulp.task('watch', ['build', 'serve'], () => {
     });
 
     gulp.watch('app/index.html', ['html']);
-    gulp.watch(['app/js/**/*.js', 'app/partials/**/*'], ['scripts:hint', 'test:run']);
+    gulp.watch(['app/js/**/*.js', 'app/partials/**/*', 'tests/**/*.js'], ['scripts:hint', 'test:run']);
     gulp.watch('app/styles/*.less', ['styles']);
 });
 
