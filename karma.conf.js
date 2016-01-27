@@ -28,18 +28,13 @@ module.exports = function (config) {
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
-            'fixtures/*.json': ['ng-json2js']
-        },
-
-        ngJson2JsPreprocessor: {
-            stripPrefix: 'fixtures/',
-            prependPrefix: 'fixtures/'
+            'dist/js/*': 'coverage'
         },
 
         // test results reporter to use
         // possible values: 'dots', 'progress'
         // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-        reporters: ['progress'],
+        reporters: ['progress', 'coverage'],
 
 
         // web server port
@@ -67,6 +62,14 @@ module.exports = function (config) {
 
         // Continuous Integration mode
         // if true, Karma captures browsers, runs the tests and exits
-        singleRun: false
+        singleRun: false,
+
+        plugins: ['karma-coverage', 'karma-jasmine', 'karma-phantomjs-launcher'],
+
+        coverageReporter: {
+            type: 'lcov',
+            dir: 'coverage',
+            subdir: '.' // Output the results into ./coverage/
+        }
     });
 };
