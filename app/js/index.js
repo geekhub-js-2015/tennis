@@ -17,11 +17,6 @@ angular.module('app', [angularUiRouter, angularUIBootstrap, angularAnimate, angu
     .controller('MainController', MainController)
     .controller('StartController', StartController)
     .service('GameService', GameService)
-    .filter('groupByName', function() {
-        return function(obj) {
-            return obj.reduce();
-        }
-    })
     .config(function($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/');
 

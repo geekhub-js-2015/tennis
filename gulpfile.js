@@ -18,7 +18,8 @@ const gulp = require('gulp'),
     cssnano = require('gulp-cssnano'),
     sourcemaps = require('gulp-sourcemaps'),
     ngAnnotate = require('gulp-ng-annotate'),
-    stringify = require('stringify');
+    stringify = require('stringify'),
+    karma = require('karma');
 
 gulp.task('default', ['build']);
 
@@ -57,7 +58,7 @@ gulp.task('scripts', () => {
 });
 
 gulp.task('scripts:hint', () => {
-    return gulp.src('app/js/**/*.js')
+    return gulp.src(['app/js/**/*.js', 'tests/**/*.js'])
         .pipe(jshint({esnext: true}))
         .pipe(jshint.reporter(jshintStylish));
 });
@@ -79,9 +80,20 @@ gulp.task('clean', () => {
 
 gulp.task('watch', ['build', 'serve'], () => {
     livereload.listen();
+    new karma.Server({
+        configFile: __dirname + '/karma.conf.js',
+        autoWatch: false,
+        singleRun: false
+    }).start();
+
+    gulp.task('test:run', ['scripts'], (done) => {
+        karma.runner.run({
+            configFile: __dirname + '/karma.conf.js'
+        }, done);
+    });
 
     gulp.watch('app/index.html', ['html']);
-    gulp.watch(['app/js/**/*.js', 'app/partials/**/*'], ['scripts', 'scripts:hint']);
+    gulp.watch(['app/js/**/*.js', 'app/partials/**/*', 'tests/**/*.js'], ['scripts:hint', 'test:run']);
     gulp.watch('app/styles/*.less', ['styles']);
 });
 
@@ -93,4 +105,12 @@ gulp.task('serve', () => {
         .on('listening', function () {
             console.log('Started connect web server on http://localhost:4000');
         });
+});
+
+gulp.task('test', ['scripts'], (done) => {
+    new karma.Server({
+        configFile: __dirname + '/karma.conf.js',
+        autoWatch: false,
+        singleRun: true
+    }, done).start();
 });

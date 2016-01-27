@@ -1,4 +1,5 @@
 class GameService {
+
     constructor(moment) {
         this.moment = moment;
         let saved = localStorage.getItem('tennisGameStats');
@@ -22,6 +23,7 @@ class GameService {
         this.games.push({
             opponentName, playerScore, opponentScore, time: new Date()
         });
+
 
         this.saveToStorage();
     }
@@ -54,6 +56,20 @@ class GameService {
         return 100 - this.getWinPercent();
     }
 
+
+    save() {
+        localStorage.games = JSON.stringify(this.games);
+    }
+
+    load() {
+        try {
+            this.games = JSON.parse(localStorage.games);
+        } catch(e) {}
+
+        if (!this.games) {
+            this.clear();
+        }
+    }
 
 }
 
