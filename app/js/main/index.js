@@ -1,8 +1,10 @@
 class MainController {
     constructor(GameService) {
+
         this.GameService = GameService;
         this.games = GameService.games;
         this.editingData = {};
+
         for (var i = 0, length = this.games.length; i < length; i++) {
             this.editingData[i] = false;
         }
@@ -15,7 +17,6 @@ class MainController {
         this.editingData[id] = true;
 
     }
-
 
     update(id) {
         this.editingData[id] = false;

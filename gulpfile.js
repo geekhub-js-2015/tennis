@@ -37,7 +37,7 @@ gulp.task('styles', () => {
 
 gulp.task('scripts', () => {
     let b = browserify({
-        entries: ['app/js/index.js','app/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js'],
+        entries: ['app/js/index.js'],
         cache: {},
         packageCache: {},
         debug: true
