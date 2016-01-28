@@ -62,7 +62,7 @@ gulp.task('scripts:hint', () => {
 });
 
 gulp.task('html', () => {
-    return gulp.src('app/index.html')
+    return gulp.src('app/**/*.html')
         .pipe(gulp.dest('dist'))
         .pipe(livereload());
 });
@@ -74,7 +74,7 @@ gulp.task('clean', () => {
 gulp.task('watch', ['build', 'serve'], () => {
     livereload.listen();
 
-    gulp.watch('app/index.html', ['html']);
+    gulp.watch('app/**/*.html', ['html']);
     gulp.watch(['app/js/**/*.js', 'app/partials/**/*'], ['scripts', 'scripts:hint']);
     gulp.watch('app/styles/*.less', ['styles']);
 });

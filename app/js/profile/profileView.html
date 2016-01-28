@@ -1,0 +1,19 @@
+<h1>Player {{}}</h1>
+
+<form name="add.addGame" ng-submit="add.save()">
+    <div class="form-group">
+        <label>My Name: <input class="form-control" type="text" ng-model="add.addGame.name" required></label>
+    </div>
+    <div class="form-group">
+        <label>Who I played: <input class="form-control" type="text" ng-model="add.addGame.hisName" required></label>
+    </div>
+
+    <div class="form-group" ng-show="add.name">
+        <label>{{ add.name }} points: <input class="form-control" type="number" ng-model="add.addGame.points" max="21" min="0"  required></label>
+    </div>
+    <div class="form-group" ng-show="add.hisName">
+        <label>{{ add.hisName }} points: <input class="form-control" type="number" ng-model="add.addGame.hisPoints" max="21" min="0"  required></label>
+    </div>
+
+    <button type="submit" class="btn btn-primary" ng-disabled="addGame.$invalid">Save</button>
+</form>

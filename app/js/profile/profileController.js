@@ -1,12 +1,6 @@
-class StartController {
+class ProfileController {
     constructor(GameService, $state) {
         this.GameService = GameService;
-        this.$state = $state;
-
-        this.name = '';
-        this.hisName = '';
-        this.points = 0;
-        this.hisPoints = 0;
     }
 
     save() {
@@ -15,4 +9,4 @@ class StartController {
     }
 }
 
-export default StartController;
+export default ProfileController;
