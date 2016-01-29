@@ -17,7 +17,28 @@ angular.module('app', [angularUiRouter, angularUIBootstrap, angularAnimate, angu
     .controller('MainController', MainController)
     .controller('StartController', StartController)
     .service('GameService', GameService)
-    .config(function($stateProvider, $urlRouterProvider) {
+    .filter('orderByDate', function () {
+        return function (value, desc) {
+            if (angular.isArray(value)) {
+                if (desc) {
+                    return value.sort(function (a, b) {
+                        return a.time + b.time;
+                    });
+                } else {
+                    return value.sort(function (a, b) {
+                        return a.time - b.time;
+                    });
+                }
+
+            }
+        }
+    })
+    .filter('reverse', function () {
+        return function (items) {
+            return items.slice().reverse();
+        };
+    })
+    .config(function ($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/');
 
         $stateProvider
