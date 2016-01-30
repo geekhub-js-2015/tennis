@@ -7,15 +7,18 @@ import angularMoment from 'angular-moment';
 
 import MainController from './main/index';
 import StartController from './start/index';
+import ResultController from './result/index';
 
 import GameService from './games/index';
 
 import mainTemplate from './../partials/main/index.html';
 import startTemplate from './../partials/start/index.html';
+import resultTemplate from './../partials/result/index.html'
 
 angular.module('app', [angularUiRouter, angularUIBootstrap, angularAnimate, angularMoment])
     .controller('MainController', MainController)
     .controller('StartController', StartController)
+    .controller('ResultController', ResultController)
     .service('GameService', GameService)
     .filter('orderByDate', function () {
         return function (value, desc) {
@@ -51,5 +54,10 @@ angular.module('app', [angularUiRouter, angularUIBootstrap, angularAnimate, angu
                 url: "/start",
                 template: startTemplate,
                 controller: 'StartController as start'
+            })
+            .state('result', {
+                url: "/result",
+                template: resultTemplate,
+                controller: 'ResultController as result'
             });
     });
