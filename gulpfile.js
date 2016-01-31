@@ -23,7 +23,7 @@ const gulp = require('gulp'),
 
 gulp.task('default', ['build']);
 
-gulp.task('build', ['scripts', 'scripts:hint', 'html', 'styles']);
+gulp.task('build', ['scripts', 'scripts:hint', 'html', 'styles', 'fonts']);
 
 gulp.task('styles', () => {
     return gulp.src('app/styles/*.less')
@@ -33,6 +33,7 @@ gulp.task('styles', () => {
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('dist/styles'))
         .pipe(livereload());
+
 });
 
 gulp.task('scripts', () => {
@@ -66,6 +67,11 @@ gulp.task('html', () => {
     return gulp.src('app/index.html')
         .pipe(gulp.dest('dist'))
         .pipe(livereload());
+});
+
+gulp.task('fonts', () => {
+    return gulp.src('app/bower_components/bootstrap/fonts/*')
+        .pipe(gulp.dest('dist/fonts'))
 });
 
 gulp.task('clean', () => {

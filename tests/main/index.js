@@ -1,4 +1,4 @@
-describe('Start Controller', function () {
+describe('Main Controller', function () {
 
     var gameService;
     var gamesObj = [
@@ -45,25 +45,13 @@ describe('Start Controller', function () {
         };
 
         inject(function ($controller) {
-            ctrl = $controller("StartController", {
+            ctrl = $controller("MainController", {
                 GameService: gameService
             });
         });
     });
 
-    it('should contain all opponents without duplicate', function() {
-        expect(ctrl.getAllOpponentName().length).toEqual(3);
-    });
-
-    it('It saves a game', function() {
-        ctrl.opponentName = 'NoName';
-        ctrl.opponentScore = 10;
-        ctrl.playerScore = 21;
-
-        spyOn(gameService, 'addGame');
-
-        ctrl.save();
-
-        expect(gameService.addGame).toHaveBeenCalledWith('NoName', 10, 21);
+    it('return correct winner', function() {
+        expect(ctrl.isWin(ctrl.games[1])).toBeTruthy();
     });
 });

@@ -1,0 +1,39 @@
+<table class="table table-hover">
+
+    <tr>
+        <th class="text-center">Name opponent</th>
+        <th class="text-center">Opponent score</th>
+        <th class="text-center"></th>
+        <th class="text-center">Your score</th>
+        <th class="text-center">Date</th>
+
+    </tr>
+    <tr class="text-center"
+        ng-repeat="game in  result.games.slice(((result.currentPage-1)*result.itemsPerPage), ((result.currentPage)*result.itemsPerPage)) track by $index ">
+
+        <td class="vert-align">
+            <div>{{ game.opponentName }}</div>
+        </td>
+
+        <td class="vert-align">
+            <div>{{ game.opponentScore }}</div>
+        </td>
+
+        <td class="vert-align"> :</td>
+
+        <td class="vert-align">
+            <div>{{ game.playerScore }}</div>
+        </td>
+
+
+        <td class="vert-align">
+            <div>{{(game.time | date:'dd MMMM yyyy') || 'empty'}}</div>
+        </td>
+
+
+
+    </tr>
+
+</table>
+
+<uib-pagination total-items="result.totalItems" ng-model="result.currentPage" class="pagination-sm" items-per-page="result.itemsPerPage"></uib-pagination>
