@@ -59,22 +59,6 @@ class GameService {
         return 100 - this.getWinPercent();
     }
 
-
-    save() {
-        localStorage.games = JSON.stringify(this.games);
-    }
-
-    load() {
-        try {
-            this.games = JSON.parse(localStorage.games);
-        } catch (e) {
-        }
-
-        if (!this.games) {
-            this.clear();
-        }
-    }
-
 }
 
 export default GameService;

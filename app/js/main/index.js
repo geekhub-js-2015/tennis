@@ -2,14 +2,12 @@ class MainController {
     constructor(GameService) {
 
         this.GameService = GameService;
-        this.games = GameService.games;
+        this.games = this.GameService.games;
         this.editingData = {};
         this.limitOutputGame = 10;
         for (var i = 0, length = this.games.length; i < length; i++) {
             this.editingData[i] = false;
         }
-
-        console.dir(this.games);
     }
 
     getLimitDisplayGames() {
@@ -45,9 +43,6 @@ class MainController {
         return obj.playerScore > obj.opponentScore;
     }
 
-    edit(id, value) {
-        this.GameService.edit(id, value);
-    }
 }
 
 export default MainController;

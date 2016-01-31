@@ -1,5 +1,6 @@
 class ResultController {
     constructor(GameService) {
+
         this.games = GameService.games;
 
         this.viewby = 20;
@@ -15,11 +16,6 @@ class ResultController {
     pageChanged() {
         console.log('Page changed to: ' + this.currentPage);
     };
-
-    setItemsPerPage(num) {
-        this.itemsPerPage = num;
-        this.currentPage = 1; //reset to first paghe
-    }
 }
 
 export default ResultController;

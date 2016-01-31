@@ -4,7 +4,7 @@ class StartController {
         this.games = this.GameService.games;
         this.$state = $state;
 
-        this.opponentName = [];
+        this.opponentName = '';
         this.opponentScore = 0;
         this.playerScore = 0;
     }
