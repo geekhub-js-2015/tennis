@@ -1,12 +1,20 @@
 <div>
     Hi, are you ready?
 </div>
-<button ui-sref="start" class="btn">Start a new game</button>
+<button ui-sref="start"  >Start a new game</button>
 
+<h2><button ui-sref="gamers" class="btn">Gamers</button></h2>
 <h1>Games</h1>
 
-<div ng-repeat="game in main.games | orderBy: 'name1' ">
-    <h2 ng-hide="main.games[$index - 1].name1 == game.name1">{{ game.name1 }}</h2>
-    <h3 ng-hide="main.games[$index - 1].name1 == game.name1 && main.games[$index - 1].time | date:'EEEE' == game.time | date:'EEEE'">{{ game.time | date:'EEEE' }}</h3>
-    {{ game.score1 }} : {{ game.score2 }} {{ game.name2 }}
+<!--<div ng-repeat="game in main.games | orderBy: 'name1' ">-->
+    <!--<h2 ng-hide="main.games[$index - 1].name1 == game.name1">{{ game.name1 }}</h2>-->
+    <!--<h3 ng-hide="main.games[$index - 1].name1 == game.name1 && main.games[$index - 1].time | date:'EEEE' == game.time | date:'EEEE'">{{ game.time | date:'EEEE' }}</h3>-->
+    <!--{{ game.score1 }} : {{ game.score2 }} {{ game.name2 }}-->
+<!--</div>-->
+
+<div ng-repeat="game in main.games">
+    <h5>
+        <span ng-class="{winner : {{game.score1 > game.score2}}, loser : {{game.score1 < game.score2}} }">{{ game.name1 }} {{ game.score1 }}</span>
+        : <span ng-class="{winner : {{game.score1 < game.score2}}, loser : {{game.score1 > game.score2}} }">{{ game.score2 }} {{ game.name2 }}</span>
+    </h5>
 </div>

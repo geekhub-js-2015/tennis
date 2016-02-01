@@ -1,0 +1,17 @@
+<h1>Gamers</h1>
+
+<div ng-repeat="user in gamers.users">
+    <h3>
+        <span><b>{{ user }}</b></span> <button ng-click="showInfo = !showInfo">Info</button>
+    </h3>
+    <div id="user-info" ng-show="showInfo" class="btn">
+        <span>Count of games: <b>{{ gamers.GameService.getCountGamesByUser(user) }}</b></span>
+        Win rates: <b>{{ gamers.GameService.getUserWinStat(user) }}</b><br />
+        Games:
+        <ul>
+            <li ng-repeat="g in games = gamers.getGamesByUser(user)">
+                <p>{{ g }}</p>
+            </li>
+        </ul>
+    </div>
+</div>

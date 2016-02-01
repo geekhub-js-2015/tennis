@@ -8,7 +8,7 @@ describe("Game Service", function () {
         inject(function (GameService) {
             gameService = GameService;
             spyOn(gameService, 'load').and.callFake(function() {
-                gameService.clear();
+                gameService.setDefault();
             });
             gameService.load();
         });

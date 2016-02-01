@@ -7,6 +7,8 @@ class StartController {
         this.hisName = '';
         this.points = 0;
         this.hisPoints = 0;
+
+	    this.users = this.GameService.users;
     }
 
     save() {
