@@ -1,6 +1,6 @@
 class GameService {
     constructor() {
-        this.load();
+        this.clear();
     }
 
     addGame(name1, name2, score1, score2) {
