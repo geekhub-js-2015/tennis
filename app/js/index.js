@@ -4,15 +4,18 @@ import angularUiRouter from 'angular-ui-router';
 
 import MainController from './main/index';
 import StartController from './start/index';
+import GamersController from './gamers/index';
 
 import GameService from './games/index';
 
 import mainTemplate from './../partials/main/index.html';
 import startTemplate from './../partials/start/index.html';
+import gamersTemplate from './../partials/gamers/index.html';
 
 angular.module('app', [angularUiRouter])
     .controller('MainController', MainController)
     .controller('StartController', StartController)
+    .controller('GamersController', GamersController)
     .service('GameService', GameService)
     .filter('groupByName', function() {
         return function(obj) {
@@ -44,5 +47,10 @@ angular.module('app', [angularUiRouter])
                 url: "/start",
                 template: startTemplate,
                 controller: 'StartController as start'
-            });
+            })
+            .state('gamers', {
+		        url: "/gamers",
+		        template: gamersTemplate,
+		        controller: 'GamersController as gamers'
+	        });
     });
