@@ -1,13 +1,13 @@
 class GameService {
     constructor() {
-        this.clear();
+        this.load();
     }
 
     addGame(name1, name2, score1, score2) {
         this.games.push({
             name1, name2, score1, score2, time: new Date()
         });
-        console.log(this.games);
+        this.save();
     }
 
     clear() {
@@ -30,6 +30,20 @@ class GameService {
             score2: 5,
             time: new Date()
         }];
+    }
+
+    save() {
+        localStorage.games = JSON.stringify(this.games);
+    }
+
+    load() {
+        try {
+            this.games = JSON.parse(localStorage.games);
+        } catch(e) {}
+
+        if (!this.games) {
+            this.clear();
+        }
     }
 }
 
