@@ -1,13 +1,15 @@
 class GameService {
     constructor() {
-        this.clear();
+        this.load();
     }
 
     addGame(name1, name2, score1, score2) {
         this.games.push({
             name1, name2, score1, score2, time: new Date(), showInfo: false
         });
-	    localStorage.setItem('games', angular.toJson(this.games));
+	    //localStorage.setItem('games', angular.toJson(this.games));
+	    this.save();
+	    //this.saveUserName(name2);
 	    // "$$hashKey":"object:13" - ?
     }
 
@@ -16,19 +18,42 @@ class GameService {
 	    this.games = JSON.parse(localStorage.getItem('games')) || [];
     }
 
-    /*save() {
+	setDefault() {
+		this.games = [{
+			name1: 'Fred',
+			name2: 'Sasha',
+			score1: 10,
+			score2: 21,
+			time: new Date()
+		}, {
+			name1: 'Fred',
+			name2: 'Sasha',
+			score1: 10,
+			score2: 5,
+			time: new Date()
+		}, {
+			name1: 'Masha',
+			name2: 'Sasha',
+			score1: 21,
+			score2: 5,
+			time: new Date()
+		}];
+	}
+
+    save() {
         localStorage.games = JSON.stringify(this.games);
     }
 
     load() {
         try {
             this.games = JSON.parse(localStorage.games);
+            this.users = JSON.parse(localStorage.users);
         } catch(e) {}
 
         if (!this.games) {
-            this.clear();
+            this.setDefault();
         }
-    }*/
+    }
 
 	saveUserName(name) {
 		if (this.users.indexOf(name) == -1) {

@@ -13,7 +13,6 @@ class StartController {
 
     save() {
         this.GameService.addGame(this.name, this.hisName, this.points, this.hisPoints);
-        this.GameService.saveUserName(this.hisName);
         this.$state.go('main');
     }
 }
