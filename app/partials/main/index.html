@@ -5,8 +5,6 @@
 
 <h1>Games</h1>
 
-<div ng-repeat="game in main.games | orderBy: 'name1' ">
-    <h2 ng-hide="main.games[$index - 1].name1 == game.name1">{{ game.name1 }}</h2>
-    <h3 ng-hide="main.games[$index - 1].name1 == game.name1 && main.games[$index - 1].time | date:'EEEE' == game.time | date:'EEEE'">{{ game.time | date:'EEEE' }}</h3>
-    {{ game.score1 }} : {{ game.score2 }} {{ game.name2 }}
+<div ng-repeat="game in main.games">
+    <result game="game" previous-game="main.games[$index - 1]"></result>
 </div>
