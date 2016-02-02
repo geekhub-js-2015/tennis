@@ -1,50 +1,85 @@
 class GameService {
     constructor() {
-        this.load();
+        if (localStorage.length == 0) {
+            this.games = [];
+        }
+        else {
+            this.games = JSON.parse(localStorage.games);
+        }
+        this.statistic = this.statistics();
+
     }
+
 
     addGame(name1, name2, score1, score2) {
         this.games.push({
             name1, name2, score1, score2, time: new Date()
         });
+        this.statistic = this.statistics();
         this.save();
-    }
-
-    clear() {
-        this.games = [{
-            name1: 'Fred',
-            name2: 'Sasha',
-            score1: 10,
-            score2: 21,
-            time: new Date()
-        }, {
-            name1: 'Fred',
-            name2: 'Sasha',
-            score1: 10,
-            score2: 5,
-            time: new Date()
-        }, {
-            name1: 'Masha',
-            name2: 'Sasha',
-            score1: 21,
-            score2: 5,
-            time: new Date()
-        }];
     }
 
     save() {
         localStorage.games = JSON.stringify(this.games);
     }
 
-    load() {
-        try {
-            this.games = JSON.parse(localStorage.games);
-        } catch(e) {}
+    statistics() {
+        let players = [];
+        this.games.forEach(function (game) {
+            let coincidence1 = false;
+            let coincidence2 = false;
 
-        if (!this.games) {
-            this.clear();
-        }
+            for (let i = 0; i < players.length; i++) {
+                if (game.name1 == players[i].name) {
+                    if (game.score1 > game.score2) {
+                        players[i].wins += 1;
+                    }
+                    players[i].matches += 1;
+                    coincidence1 = true;
+                }
+            }
+            for (let i = 0; i < players.length; i++) {
+
+                if (game.name2 == players[i].name) {
+                    if (game.score1 < game.score2) {
+                        players[i].wins += 1;
+                    }
+                    players[i].matches += 1;
+                    coincidence2 = true;
+                    break;
+                }
+            }
+            if (coincidence1 == false) {
+                let win = 0;
+                if (game.score1 > game.score2) {
+                    win = 1;
+                }
+                else {
+                    win = 0;
+                }
+                players.push({
+                    name: game.name1,
+                    matches: 1,
+                    wins: win
+                });
+            }
+            if (coincidence2 == false) {
+                let win = 0;
+                if (game.score1 < game.score2) {
+                    win = 1;
+                }
+                else {
+                    win = 0;
+                }
+                players.push({
+                    name: game.name2,
+                    matches: 1,
+                    wins: win
+                });
+            }
+        });
+
+        return players;
     }
 }
-
 export default GameService;
