@@ -33,12 +33,12 @@ class GameService {
     }
 
     save() {
-        localStorage.games = JSON.stringify(this.games);
+        localStorage.games = angular.toJson(this.games);
     }
 
     load() {
         try {
-            this.games = JSON.parse(localStorage.games);
+            this.games = angular.fromJson(localStorage.games);
         } catch(e) {}
 
         if (!this.games) {
