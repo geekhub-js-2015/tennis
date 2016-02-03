@@ -3,9 +3,9 @@ class GameService {
         this.clear();
     }
 
-    addGame(name1, name2, score1, score2) {
+    addGame(name1, name2, score1, score2, date) {
         this.games.push({
-            name1, name2, score1, score2, time: new Date()
+            name1, name2, score1, score2, time: date || new Date()
         });
         console.log(this.games);
     }
@@ -54,6 +54,20 @@ class GameService {
             score2: 4,
             time: new Date()
         }];
+    }
+
+    save() {
+        localStorage.games = angular.toJson(this.games);
+    }
+
+    load() {
+        try {
+            this.games = angular.fromJson(localStorage.games);
+        } catch(e) {}
+
+        if (!this.games) {
+            this.clear();
+        }
     }
 }
 

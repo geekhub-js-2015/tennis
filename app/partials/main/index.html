@@ -5,6 +5,7 @@
 
 <h1>Games</h1>
 
+
 <h2>Percentages of wins :</h2>
 <ul>
     <li ng-repeat="percentBean in main.percentagesList">
@@ -12,10 +13,19 @@
     </li>
 </ul>
 
-<div ng-repeat="game in main.viewGames | orderBy: 'name1' ">
+<!--<div ng-repeat="game in main.viewGames | orderBy: 'name1' ">
     <h2 ng-hide="main.games[$index - 1].name1 == game.name1">{{ game.name1 }}</h2>
-    <h3 ng-hide="main.games[$index - 1].name1 == game.name1 && main.games[$index - 1].time | date:'EEEE' == game.time | date:'EEEE'">--{{ game.time | date:'EEEE' }}</h3>
-    --{{ game.score1 }} : {{ game.score2 }} {{ game.name2 }}
+    <h3 ng-hide="main.games[$index - 1].name1 == game.name1 && main.games[$index - 1].time | date:'EEEE' == game.time | date:'EEEE'">&#45;&#45;{{ game.time | date:'EEEE' }}</h3>
+    &#45;&#45;{{ game.score1 }} : {{ game.score2 }} {{ game.name2 }}
+</div>-->
+<span ng-show="main.isEdit">
+<label class="form-group">{{ editedGame.name1 }} points: <input class="form-control" type="number" ng-model="editedGame.score1" max="21" min="0"></label>
+<label class="form-group">{{ editedGame.name2 }} points: <input class="form-control" type="number" ng-model="editedGame.score2" max="21" min="0"></label>
+</span>
+<button ng-show="main.isEdit" ng-click="">Finish</button>
+<div id="piechart" style="width: 200px; height: 100px;"></div>
+<div ng-repeat="game in main.games">
+    <result game="game" previous-game="main.games[$index - 1]"></result>
 </div>
 
 <a ng-click="main.showAll()" ng-show="main.isCollapsed">Show All</a>
