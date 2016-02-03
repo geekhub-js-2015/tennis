@@ -62,6 +62,12 @@ gulp.task('scripts:hint', () => {
         .pipe(jshint.reporter(jshintStylish));
 });
 
+gulp.task('script', () => {
+    return gulp.src('app/js/pieChart.js')
+        .pipe(gulp.dest('dist'))
+        .pipe(livereload());
+});
+
 gulp.task('html', () => {
     return gulp.src('app/index.html')
         .pipe(gulp.dest('dist'))
