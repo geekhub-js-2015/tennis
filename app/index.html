@@ -7,11 +7,16 @@
 <body>
 <div class="container">
     <div class="row">
-        <div class="col-lg-offset-2 col-lg-8">
+        <div class="col-lg-offset-1 col-lg-10">
+            <h1>Tennis game</h1>
+            <hr>
+            <button class="btn" ui-sref="main">Home</button>
+            <button ui-sref="start" class="btn">Start a new game</button>
+            <button class="btn" ui-sref="results">Results</button>
             <ui-view></ui-view>
         </div>
     </div>
 </div>
-    <script src="js/index.js"></script>
+<script src="js/index.js"></script>
 </body>
 </html>

@@ -4,14 +4,17 @@ class GameService {
             this.games = [];
         }
         else {
-            this.games = JSON.parse(localStorage.games);
+            this.games = angular.fromJson(localStorage.games);
         }
         this.statistic = this.statistics();
 
+        this.games.forEach(function(item){
+            item.time = new Date(item.time);
+        });
     }
 
 
-    addGame(name1, name2, score1, score2) {
+    addGame(name1, name2, score1, score2,time) {
         this.games.push({
             name1, name2, score1, score2, time: new Date()
         });
@@ -20,8 +23,9 @@ class GameService {
     }
 
     save() {
-        localStorage.games = JSON.stringify(this.games);
+        localStorage.games = angular.toJson(this.games);
     }
+
 
     statistics() {
         let players = [];
@@ -60,7 +64,8 @@ class GameService {
                 players.push({
                     name: game.name1,
                     matches: 1,
-                    wins: win
+                    wins: win,
+                    difTime: Date.parse( game.time )
                 });
             }
             if (coincidence2 == false) {
@@ -74,7 +79,8 @@ class GameService {
                 players.push({
                     name: game.name2,
                     matches: 1,
-                    wins: win
+                    wins: win,
+                    difTime:Date.parse( game.time )
                 });
             }
         });

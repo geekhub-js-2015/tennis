@@ -1,22 +1,48 @@
 <div>
-    <h1>Hi, are you ready?</h1>
 
-    <button ui-sref="start" class="btn">Start a new game</button>
 
     <hr>
-    <h1>Statistics</h1>
-    <section ng-repeat="statistic in  main.statistic track by $index ">
-
-        <h2>Player name :{{ statistic.name }}</h2>
+    <h1>Player statistics </h1>
+    <section class="col-lg-4" ng-repeat="statistic in  main.statistic track by $index ">
+        <h2>{{ statistic.name }}</h2>
         <p>matches : {{statistic.matches}}</p>
         <p>Win :{{statistic.wins}}</p>
-        <p>percent : {{ statistic.wins * 100 /  statistic.matches +"%"}}</p>
+        <p>time:{{statistic.time}}</p>
+        <p>percent of win :
+            <uib-progressbar class="progress-striped" value="(statistic.wins * 100 / statistic.matches) |number:0"
+                             max="100">
+                {{ (statistic.wins * 100 / statistic.matches) |number:0}}%
+            </uib-progressbar>
+        </p>
+        <hr>
     </section>
+    <div class="row"></div>
     <hr>
-    <h1>Matches</h1>
-    <div ng-repeat="game in main.games track by $index">
+    <h1>Last 10 matches</h1>
 
-        <h2>{{ game.name1 }} || {{ game.name2 }}</h2>
-        <p>Score - {{ game.score1 }}:{{ game.score2 }}<br>{{ game.time | date:'EEEE - HH:mm:ss' }}</p>
-    </div>
 </div>
+<section class="col-lg-6" ng-repeat="game in main.games|reverse|limitTo:main.limitTo track by $index  ">
+    <h2><span ng-class="{'win': main.isWin(game), 'lost': !main.isWin(game)}">{{ game.name1 }} </span>|| <span
+            ng-class="{'lost': main.isWin(game), 'win': !main.isWin(game)}"> {{ game.name2 }}</span></h2>
+    <p>Score - {{ game.score1 }}:{{ game.score2 }}<br>{{ game.time | date:'dd MMMM yyyy' }}</p>
+
+    <form ng-show="main.showEdit[$index]" ng-submit="main.saveEdit($index)">
+        <label class="form-group">My Name: <input class="form-control" type="text" ng-model="game.name1"></label>
+        <label class="form-group">Who I played: <input class="form-control" type="text" ng-model="game.name2"></label>
+
+        <label class="form-group">{{ start.name }} points: <input class="form-control" type="number"
+                                                                  ng-model="game.score1"
+                                                                  max="21" min="0"></label>
+        <label class="form-group">{{ start.hisName }} points: <input class="form-control" type="number"
+                                                                     ng-model="game.score2"
+                                                                     max="21" min="0"></label>
+        <input class="form-group" type="date" ng-model="game.time">
+
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+    <button ng-click=" main.showEditfn($index)" class="btn btn-primary">Edit</button>
+    <hr>
+</section>
+<button class="btn btn-primary col-lg-12" ng-click="main.addMoreLimitTo()">Add more!!!</button>
+<div class="row"></div>
+

@@ -1,8 +1,10 @@
 <h1>Game data</h1>
 
 <form ng-submit="start.save()">
-    <label class="form-group">My Name: <input class="form-control" type="text" ng-model="start.name" required ></label>
-    <label class="form-group">Who I played: <input class="form-control" type="text" ng-model="start.hisName" required ></label>
+    <label class="form-group">My Name: <input class="form-control" type="text" ng-model="start.name"
+                                              uib-typeahead="state for state in start.getAllOpponent() | filter:$viewValue | limitTo:8"></label>
+    <label class="form-group">Who I played: <input class="form-control" type="text" ng-model="start.hisName"
+                                                   uib-typeahead="state for state in start.getAllOpponent() | filter:$viewValue | limitTo:8"></label>
 
     <label class="form-group" ng-hide="start.name == ''">{{ start.name }} points: <input class="form-control"
                                                                                          type="number"
