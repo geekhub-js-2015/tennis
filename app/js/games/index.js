@@ -10,6 +10,13 @@ class GameService {
         this.save();
     }
 
+    editGame(index, name1, name2, score1, score2) {
+        this.games[index] = {
+            name1, name2, score1, score2, time: new Date()
+        };
+        this.save();
+    }
+
     clear() {
         this.games = [{
             name1: 'Fred',
