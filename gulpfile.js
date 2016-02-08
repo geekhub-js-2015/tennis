@@ -86,7 +86,7 @@ gulp.task('watch', ['build', 'serve'], () => {
         }, done);
     });
 
-    gulp.watch('app/**/*.html', ['html']);
+    gulp.watch('app/**/*.html', ['html','scripts:hint', 'test:run']);
     gulp.watch(['app/js/**/*.js', 'app/partials/**/*', 'tests/**/*.js'], ['scripts:hint', 'test:run']);
     gulp.watch('app/styles/*.less', ['styles']);
 });
