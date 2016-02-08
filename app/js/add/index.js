@@ -9,7 +9,7 @@ class AddController {
         this.hisPoints = 0;
     }
 
-    save() {
+    addGame() {
         this.GameService.addGame(this.name, this.hisName, this.points, this.hisPoints);
         this.$state.go('main');
     }
