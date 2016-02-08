@@ -20,7 +20,9 @@ angular.module('app', [angularUiRouter])
     .controller('MainController', MainController)
     .controller('AddController', AddController)
     .controller('PaginationController', PaginationController)
+    .controller('ProfileController', ProfileController)
     .controller('EditController', EditController)
+
     .service('GameService', GameService)
     .filter('groupByName', function() {
         return function(obj) {
@@ -61,6 +63,7 @@ angular.module('app', [angularUiRouter])
                 url: "/user/:name",
                 template: profileTemplate,
                 controller: 'ProfileController as profile'
+                controller: 'ProfileController as user'
             })
             .state('edit', {
                 url: "/edit/:index",
