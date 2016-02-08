@@ -62,7 +62,6 @@ angular.module('app', [angularUiRouter])
             .state('profile', {
                 url: "/user/:name",
                 template: profileTemplate,
-                controller: 'ProfileController as profile'
                 controller: 'ProfileController as user'
             })
             .state('edit', {
