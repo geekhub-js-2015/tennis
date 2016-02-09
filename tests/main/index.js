@@ -4,7 +4,8 @@ describe('Add Controller', function () {
 
     beforeEach(module("app"));
 
-    var ctrl;
+    var ctrl,
+        stateParams;
 
     beforeEach(function () {
         gameService = {
@@ -19,16 +20,4 @@ describe('Add Controller', function () {
         });
     });
 
-    it('It saves a game', function() {
-        ctrl.name = 'Fred';
-        ctrl.hisName = 'Sasha';
-        ctrl.points = 10;
-        ctrl.hisPoints = 12;
-
-        spyOn(gameService, 'addGame');
-
-        ctrl.addGame();
-
-        expect(gameService.addGame).toHaveBeenCalledWith('Fred', 'Sasha', 10, 12);
-    });
 });
