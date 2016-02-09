@@ -5,8 +5,6 @@ class EditController {
 
         this.gameIndex = $stateParams.index;
         this.game = GameService.games[this.gameIndex];
-
-        console.log(this.game);
     }
 
     saveGame() {

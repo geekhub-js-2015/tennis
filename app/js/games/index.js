@@ -3,9 +3,9 @@ class GameService {
         this.load();
     }
 
-    addGame(name1, name2, score1, score2) {
+    addGame(name1, name2, score1, score2, date) {
         this.games.push({
-            name1, name2, score1, score2, time: new Date()
+            name1, name2, score1, score2, time: date || new Date()
         });
         this.save();
     }

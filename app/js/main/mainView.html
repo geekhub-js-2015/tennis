@@ -6,7 +6,7 @@
 <h1>Games</h1>
 
 <table class="table">
-    <tr ng-repeat="item in main.games" ng-class="{'draw': item.score1 == item.score2}">
+    <tr ng-repeat="item in main.games | orderBy: 'time'" ng-class="{'draw': item.score1 == item.score2}">
         <td>{{ item.time | date:'shortDate' }}</td>
         <td ng-class="{'winner': item.score1 > item.score2}"><a ui-sref="profile({ name: item.name1 })">{{ item.name1 }}</a></td>
         <td ng-class="{'winner': item.score1 > item.score2}"><span>{{ item.score1 }}</span></td>

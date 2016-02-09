@@ -24,11 +24,13 @@ describe('Add Controller', function () {
         ctrl.hisName = 'Sasha';
         ctrl.points = 10;
         ctrl.hisPoints = 12;
+        var date = new Date(0);
+        ctrl.date = date;
 
         spyOn(gameService, 'addGame');
 
         ctrl.addGame();
 
-        expect(gameService.addGame).toHaveBeenCalledWith('Fred', 'Sasha', 10, 12);
+        expect(gameService.addGame).toHaveBeenCalledWith('Fred', 'Sasha', 10, 12, date);
     });
 });

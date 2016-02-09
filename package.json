@@ -10,6 +10,8 @@
   "license": "MIT",
   "dependencies": {
     "angular": "^1.4.8",
+    "angular-mocks": "^1.4.9",
+    "angular-ui-bootstrap": "^1.1.2",
     "angular-ui-router": "^1.0.0-alpha0",
     "babel-polyfill": "^6.1.4",
     "bootstrap": "^3.3.6"
