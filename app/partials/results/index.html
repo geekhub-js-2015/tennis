@@ -1,0 +1,12 @@
+<h1>Results detail</h1>
+<section class="col-lg-6" ng-repeat="game in result.filter |reverse track by $index">
+    <h2>{{ game.name1 }} || {{ game.name2 }}</h2>
+    <p>Score - {{ game.score1 }}:{{ game.score2 }}<br>{{ game.time | date:'EEEE - HH:mm:ss' }}</p>
+    <hr>
+</section>
+<div class="row"></div>
+<button class="btn btn-warning" ng-disabled=" result.currentPage == 1" ng-click="result.previousPage()">Previous page
+</button>
+<button class="btn btn-success" ng-disabled="result.currentPage > result.games.length / result.numPerPage "
+        ng-click="result.nextPage()">Next page
+</button>
