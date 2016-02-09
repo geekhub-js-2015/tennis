@@ -4,6 +4,12 @@
 <div class="alert alert-danger"><strong>lose:</strong> {{ main.getLosePercent() | number:2 }} %</div>
 
 
+<canvas id="pie" class="chart chart-pie"
+        chart-colours="main.chartSettings.colours" chart-data="main.chartSettings.data" chart-labels="main.chartSettings.labels">
+
+</canvas>
+
+
 <h1>Latest games</h1>
 
 

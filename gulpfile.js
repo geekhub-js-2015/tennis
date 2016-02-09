@@ -26,7 +26,7 @@ gulp.task('default', ['build']);
 gulp.task('build', ['scripts', 'scripts:hint', 'html', 'styles', 'fonts']);
 
 gulp.task('styles', () => {
-    return gulp.src('app/styles/*.less')
+    gulp.src('app/styles/*.less')
         .pipe(sourcemaps.init())
         .pipe(less())
         .pipe(cssnano())
@@ -34,6 +34,8 @@ gulp.task('styles', () => {
         .pipe(gulp.dest('dist/styles'))
         .pipe(livereload());
 
+    gulp.src('node_modules/angular-chart.js/dist/angular-chart.css')
+        .pipe(gulp.dest('dist/styles'));
 });
 
 gulp.task('scripts', () => {
@@ -47,6 +49,9 @@ gulp.task('scripts', () => {
     b.transform(stringify);
     b.on('error', gutil.log);
     b.on('time', gutil.log);
+
+    gulp.src(['node_modules/chart.js/Chart.js','node_modules/angular-chart.js/dist/angular-chart.js'])
+        .pipe(gulp.dest('dist/js'));
 
     return b.bundle()
         .pipe(source('index.js'))
@@ -75,7 +80,7 @@ gulp.task('fonts', () => {
 });
 
 gulp.task('clean', () => {
-    del(['dist'], cb);
+    del(['dist']);
 });
 
 gulp.task('watch', ['build', 'serve'], () => {
@@ -114,3 +119,4 @@ gulp.task('test', ['scripts'], (done) => {
         singleRun: true
     }, done).start();
 });
+

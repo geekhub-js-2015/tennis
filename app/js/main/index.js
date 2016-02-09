@@ -8,10 +8,16 @@ class MainController {
         for (var i = 0, length = this.games.length; i < length; i++) {
             this.editingData[i] = false;
         }
+
+        this.chartSettings = {
+            labels: ["Lose", "Win"],
+            colours: ["#f2dede", "#dff0d8"],
+            data: [this.getLosePercent(), this.getWinPercent()]
+        }
     }
 
-    getLimitDisplayGames() {
-        return this.limitOutputGame;
+    updateChartData() {
+        this.chartSettings.data = [this.getLosePercent(), this.getWinPercent()];
     }
 
     loadMore() {
@@ -28,7 +34,7 @@ class MainController {
     update(id) {
         this.editingData[id] = false;
         localStorage.setItem('tennisGameStats', angular.toJson(this.games));
-
+        this.updateChartData();
     }
 
     getWinPercent() {
@@ -42,6 +48,11 @@ class MainController {
     isWin(obj) {
         return obj.playerScore > obj.opponentScore;
     }
+
+    getLimitDisplayGames() {
+        return this.limitOutputGame;
+    }
+
 
 }
 
