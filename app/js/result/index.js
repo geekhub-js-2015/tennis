@@ -1,5 +1,5 @@
 class ResultController {
-
+    //attention! this controller is poor. has bad practices and logic. but still works. need deep refactoring
     constructor(GameService, $filter, moment) {
 
         this.moment = moment;
@@ -22,6 +22,19 @@ class ResultController {
             dateTo: null
         };
 
+        this.chart = this.getChartData();
+
+    }
+
+    getChartData() {
+        return {
+            labels: this.getDates(),
+            series: ['You', 'Opponent'],
+            data: [
+                this.getWins(),
+                this.getLoses()
+            ]
+        }
     }
 
     getDates() {
@@ -34,6 +47,32 @@ class ResultController {
         return arr;
     }
 
+
+    getWins() {
+        var arr = [];
+        this.displayGames.forEach(function (item, i, items) {
+            arr.push(item.playerScore);
+        });
+
+        return arr;
+    }
+
+    getLoses() {
+        var arr = [];
+        this.displayGames.forEach(function (item, i, items) {
+            arr.push(item.opponentScore);
+        });
+
+        return arr;
+    }
+
+
+    clearDate() {
+        this.date = {
+            dateFrom: null,
+            dateTo: null
+        }
+    }
 
     updateByDate() {
 
@@ -49,6 +88,7 @@ class ResultController {
 
         this.displayGames = gamesByDate;
         this.clearDate();
+        this.refreshChartData();
 
     }
 
@@ -61,8 +101,12 @@ class ResultController {
             this.displayGames = this.getAllGames();
         }
         this.refreshDisplayGamesLength();
+        this.refreshChartData();
     }
 
+    refreshChartData() {
+        this.chart = this.getChartData();
+    }
 
     getAllGames() {
         return this.filter('reverse')(this.games);
