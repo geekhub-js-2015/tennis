@@ -15,7 +15,7 @@ describe("Game Service", function () {
     });
 
     it('Starts with some games', function() {
-        expect(gameService.games.length).toEqual(3);
+        expect(gameService.games.length).toEqual(16);
     });
 
     it("Adds a game", function() {
@@ -24,10 +24,25 @@ describe("Game Service", function () {
         gameService.addGame('Fred', 'Sasha', 21, 20);
 
         expect(gameService.save).toHaveBeenCalled();
-        expect(gameService.games.length).toEqual(4);
+        expect(gameService.games.length).toEqual(17);
         var game = gameService.games[gameService.games.length - 1];
         expect(game.name1).toEqual('Fred');
         expect(game.name2).toEqual('Sasha');
         expect(game.score1).toEqual(21);
+        expect(game.score2).toEqual(20);
+    });
+
+    it("Edit a game", function() {
+        spyOn(gameService, 'save');
+
+        gameService.addGame('Fred', 'Sasha', 21, 20);
+
+        expect(gameService.save).toHaveBeenCalled();
+        expect(gameService.games.length).toEqual(17);
+        var game = gameService.games[gameService.games.length - 1];
+        expect(game.name1).toEqual('Fred');
+        expect(game.name2).toEqual('Sasha');
+        expect(game.score1).toEqual(21);
+        expect(game.score2).toEqual(20);
     });
 });

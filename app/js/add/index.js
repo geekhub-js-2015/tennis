@@ -1,4 +1,4 @@
-class StartController {
+class AddController {
     constructor(GameService, $state) {
         this.GameService = GameService;
         this.$state = $state;
@@ -10,10 +10,10 @@ class StartController {
         this.date = new Date();
     }
 
-    save() {
+    addGame() {
         this.GameService.addGame(this.name, this.hisName, this.points, this.hisPoints, this.date);
         this.$state.go('main');
     }
 }
 
-export default StartController;
+export default AddController;

@@ -1,0 +1,16 @@
+<h1>Hello {{user.userName}}</h1>
+
+<h3>Wins: {{user.wins}}</h3>
+<h3>Loss: {{user.games.length - user.wins - user.draw}}</h3>
+<h3>Draw: {{user.draw}}</h3>
+
+<table class="table">
+    <tr ng-repeat="game in user.games | orderBy: 'time'">
+        <td>{{ game.time | date:'shortDate' }}</td>
+        <td><a ui-sref="profile({ name: game.name1})">{{ game.name1 }}</a></td>
+        <td>{{ game.score1 }}</td>
+        <td>:</td>
+        <td>{{ game.score2 }}</td>
+        <td><a ui-sref="profile({ name: game.name2 })">{{ game.name2 }}</a></td>
+    </tr>
+</table>

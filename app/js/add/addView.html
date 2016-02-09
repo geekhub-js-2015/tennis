@@ -1,0 +1,21 @@
+<h1>Add data</h1>
+
+<form ng-submit="add.addGame()">
+    <div class="form-group">
+        <label>My Name: <input class="form-control" type="text" ng-model="add.name" required></label>
+    </div>
+    <div class="form-group">
+        <label>Who I played: <input class="form-control" type="text" ng-model="add.hisName" required></label>
+    </div>
+
+    <div class="form-group" ng-show="add.name">
+        <label>{{ add.name }} points: <input class="form-control" type="number" ng-model="add.points" max="21" min="0"  required></label>
+    </div>
+    <div class="form-group" ng-show="add.hisName">
+        <label>{{ add.hisName }} points: <input class="form-control" type="number" ng-model="add.hisPoints" max="21" min="0"  required></label>
+    </div>
+
+    <uib-datepicker ng-model="start.date"></uib-datepicker>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>

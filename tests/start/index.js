@@ -1,4 +1,4 @@
-describe('Start Controller', function () {
+describe('Add Controller', function () {
 
     var gameService;
 
@@ -13,7 +13,7 @@ describe('Start Controller', function () {
         };
 
         inject(function ($controller) {
-            ctrl = $controller("StartController", {
+            ctrl = $controller("AddController", {
                 GameService: gameService
             });
         });
@@ -29,7 +29,7 @@ describe('Start Controller', function () {
 
         spyOn(gameService, 'addGame');
 
-        ctrl.save();
+        ctrl.addGame();
 
         expect(gameService.addGame).toHaveBeenCalledWith('Fred', 'Sasha', 10, 12, date);
     });

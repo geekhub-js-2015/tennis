@@ -1,0 +1,21 @@
+<div>
+    Hi, are you ready?
+</div>
+<button ui-sref="start" class="btn">Start a new game</button>
+
+<h1>Games</h1>
+
+<table class="table">
+    <tr ng-repeat="item in main.games | orderBy: 'time'" ng-class="{'draw': item.score1 == item.score2}">
+        <td>{{ item.time | date:'shortDate' }}</td>
+        <td ng-class="{'winner': item.score1 > item.score2}"><a ui-sref="profile({ name: item.name1 })">{{ item.name1 }}</a></td>
+        <td ng-class="{'winner': item.score1 > item.score2}"><span>{{ item.score1 }}</span></td>
+        <td>:</td>
+        <td ng-class="{'winner': item.score1 < item.score2}"><span>{{ item.score2 }}</span></td>
+        <td ng-class="{'winner': item.score1 < item.score2}"><a ui-sref="profile({ name: item.name2 })">{{ item.name2 }}</a></td>
+        <td><a ui-sref="edit({ index: $index })" class="btn btn-primary btn-xs">Edit</a></td>
+    </tr>
+</table>
+
+
+
