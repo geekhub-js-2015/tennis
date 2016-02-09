@@ -1,5 +1,0 @@
-<h1>Games played with {{ user.name }}</h1>
-
-<div ng-repeat="game in user.games | orderBy: 'name1' ">
-    <result game="game" previous-game="user.games[$index - 1]" hide-name="true"></result>
-</div>
