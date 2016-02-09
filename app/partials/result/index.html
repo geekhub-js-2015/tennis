@@ -1,5 +1,42 @@
-<table class="table table-hover">
+<div class="form-group">
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="col-md-4">
+                <label for="opponentNameSelect">Choose opponent name:</label>
+                <select ng-change="result.orderByName()" class="form-control" ng-model="result.selectedOpponentName"
+                        name="opponentNameSelect"
+                        id="opponentNameSelect">
+                    <option value="" selected>All</option>
+                    <option ng-repeat="opponent in result.uniqueNamesOpponent" value="{{opponent.opponentName}}">{{
+                        opponent.opponentName }}
+                    </option>
+                </select><br>
+            </div>
 
+
+                <div class="col-md-3">
+                    <label for="opponentNameSelect">Date from:</label>
+                    <input ng-change="result.testSome()" class="form-control" type="date"
+                           ng-model="result.date.dateFrom"/><br>
+                </div>
+
+                <div class="col-md-3">
+                    <label for="opponentNameSelect">Date to:</label>
+                    <input class="form-control" type="date" ng-model="result.date.dateTo"/><br>
+                </div>
+
+                <div class="col-md-2">
+                    <br/>
+                    <button class="btn btn-default" ng-click="result.updateByDate()">Update</button>
+                </div>
+
+</div>
+        </div>
+    </div>
+</div>
+
+<table class="table table-hover">
     <tr>
         <th class="text-center">Name opponent</th>
         <th class="text-center">Opponent score</th>
@@ -9,7 +46,7 @@
 
     </tr>
     <tr class="text-center"
-        ng-repeat="game in  result.games.slice(((result.currentPage-1)*result.itemsPerPage), ((result.currentPage)*result.itemsPerPage)) track by $index ">
+        ng-repeat="game in  result.displayGames.slice(((result.currentPage-1)*result.itemsPerPage), ((result.currentPage)*result.itemsPerPage)) track by $index ">
 
         <td class="vert-align">
             <div>{{ game.opponentName }}</div>
@@ -31,9 +68,9 @@
         </td>
 
 
-
     </tr>
 
 </table>
 
-<uib-pagination total-items="result.totalItems" ng-model="result.currentPage" class="pagination-sm" items-per-page="result.itemsPerPage"></uib-pagination>
+<uib-pagination total-items="result.totalItems" ng-model="result.currentPage" class="pagination-sm"
+                items-per-page="result.itemsPerPage"></uib-pagination>
