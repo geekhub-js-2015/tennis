@@ -8,3 +8,5 @@
 <div ng-repeat="game in main.games">
     <result game="game" previous-game="main.games[$index - 1]"></result>
 </div>
+
+<pager items-on-page="2" items="main.allGames" paged-items="main.games"></pager>

@@ -8,6 +8,10 @@ class StartController {
         this.points = 0;
         this.hisPoints = 0;
         this.date = new Date();
+
+        //$scope.$watch('start.name', function(val, oldVal) {
+        //    console.log('watch', val, oldVal);
+        //});
     }
 
     save() {

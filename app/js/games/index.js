@@ -29,6 +29,18 @@ class GameService {
             score1: 21,
             score2: 5,
             time: new Date()
+        }, {
+            name1: 'Masha',
+            name2: 'Sasha',
+            score1: 21,
+            score2: 5,
+            time: new Date()
+        }, {
+            name1: 'Masha',
+            name2: 'Sasha',
+            score1: 21,
+            score2: 5,
+            time: new Date()
         }];
     }
 
@@ -44,6 +56,10 @@ class GameService {
         if (!this.games) {
             this.clear();
         }
+    }
+
+    getGames(from, to) {
+        return this.games.slice(from, to);
     }
 }
 

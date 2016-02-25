@@ -1,0 +1,7 @@
+<nav>
+    <ul class="pagination">
+        <li ng-repeat="page in pages" ng-class="{'active': currentPage == page.idx}">
+            <a ng-click="choosePage(page.idx)">{{page.page}}</a>
+        </li>
+    </ul>
+</nav>

@@ -30,4 +30,27 @@ describe("Game Service", function () {
         expect(game.name2).toEqual('Sasha');
         expect(game.score1).toEqual(21);
     });
+
+    it('Saves games in localStorage', function() {
+        localStorage.clear();
+
+        gameService.save();
+
+        expect(localStorage.games).toBeTruthy();
+    });
+
+    it('Loads games in localStorage', function() {
+        localStorage.clear();
+        localStorage.games = JSON.stringify([{
+            name1: 'Fred',
+            name2: 'Sasha',
+            score1: 10,
+            score2: 21,
+            time: new Date()
+        }]);
+
+        gameService.load();
+
+        expect(gameService.games).toBeTruthy();
+    });
 });

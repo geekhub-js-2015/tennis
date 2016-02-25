@@ -14,6 +14,7 @@ import startTemplate from './../partials/start/index.html';
 import userTemplate from './../partials/user/index.html';
 
 import result from './main/result';
+import pager from './main/pager';
 
 angular.module('app', [angularUiRouter, angularUiBootstrap])
     .controller('MainController', MainController)
@@ -21,6 +22,7 @@ angular.module('app', [angularUiRouter, angularUiBootstrap])
     .controller('UserController', UserController)
     .service('GameService', GameService)
     .directive('result', result)
+    .directive('pager', pager)
     .config(function($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/');
 
